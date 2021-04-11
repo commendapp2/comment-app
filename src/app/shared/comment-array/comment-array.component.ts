@@ -60,4 +60,8 @@ export class CommentArrayComponent implements OnInit, OnDestroy {
     this.subjects.assignCommentIndexFromManageComments(index);
     this.subjects.showPopupPrompt();
   }
+
+  test() {
+    
+  }
 }
