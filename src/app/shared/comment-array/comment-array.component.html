@@ -1,0 +1,29 @@
+<div class="comment-array-container container">
+  <div [ngClass]="{'edit-mode' : !editCommentMode}"
+    class="comment-array-container__comment" 
+    *ngFor="let comment of comments; let i = index" 
+    (click)="!editCommentMode && onOpenCurrentComment(i)"
+    [@addComment]>
+    <div class="comment-array-container__comment__header">
+      <div class="info">
+        <div class="info-text">
+          <div>Title: {{ comment.title | shorten: 20 }}</div>
+          <div>Type: {{ comment.type }}</div>
+        </div>
+        <div class="info-date">
+          <div class="date">{{ comment.date | date:'dd/MM/yy' }}</div>
+          <div class="time">{{ comment.date | date:'H:mm:ss' }}</div>
+        </div>
+      </div>
+      <div class="controls" *ngIf="editCommentMode">
+        <button class="edit" (click)="onEditComment(i)"></button>
+        <button class="delete" (click)="onDeleteComment(i)"></button>
+      </div>
+    </div>
+    <div class="comment-array-container__comment__body">
+      <p>{{ comment.content }}</p>
+    </div> 
+  </div>
+
+  <app-confirmation-popup *ngIf="showPopup"></app-confirmation-popup>
+</div>

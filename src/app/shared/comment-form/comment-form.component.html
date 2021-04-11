@@ -1,0 +1,59 @@
+<div>
+  <form
+    [ngClass]="{'edit-mode' : editCommentMode}"
+    class="comment-form" [formGroup]="commentForm" 
+    (ngSubmit)="!editCommentMode ? onSubmitComment(commentForm) : editCommentMode && onChangeComment()">
+    <div class="comment-form__top">
+      <div class="comment-form__top__el title">
+        <label for="title">Title</label>
+        <input type="text" name="title" formControlName="title">
+        <div>
+          <p class="error-msg" 
+            *ngIf="commentForm.get('title').invalid &&
+            commentForm.get('title').touched &&
+            !commentForm.get('title').hasError('minlength')">
+            The field is required!
+          </p>
+          <p class="error-msg" 
+            *ngIf="commentForm.get('title').hasError('minlength') &&
+            commentForm.get('title').touched">
+            The title should be at least 3 symbols!
+          </p>
+        </div>
+      </div>
+      <div class="comment-form__top__el type">
+        <label for="type">Type</label>
+        <select name="type" formControlName="type">
+          <option hidden selected></option>
+          <option value="{{ commentType.value }}" *ngFor="let commentType of commentTypes">{{ commentType.type }}</option>
+        </select>
+        <div>
+          <p class="error-msg" 
+            *ngIf="commentForm.get('type').invalid && commentForm.get('type').touched">
+            Please select an option from the drop down menu!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="comment-form__text-area">
+      <textarea name="content" formControlName="content" placeholder="Type your comment..."></textarea>
+      <div>
+        <p class="error-msg" 
+          *ngIf="commentForm.get('content').invalid &&
+          commentForm.get('content').touched &&
+          !commentForm.get('content').hasError('minlength')">
+          The post is required!
+        </p>
+        <p class="error-msg" 
+          *ngIf="commentForm.get('content').hasError('minlength') &&
+          commentForm.get('content').touched">
+          The post should be at least 3 symbols!
+        </p>
+      </div>
+    </div>
+    <div class="comment-form__btns">
+      <button type="submit" [disabled]="!commentForm.valid">{{ !editCommentMode ? "Add Comment" : "Change Comment"}}</button>
+      <button type="button" *ngIf="editCommentMode" (click)="onDeleteComment()">Delete Comment</button>
+    </div>
+  </form>
+</div>

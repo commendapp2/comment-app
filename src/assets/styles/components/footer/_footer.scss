@@ -1,0 +1,39 @@
+.footer-container {
+  background-color: $dark_grey;
+  padding: 20px;
+  &__content {
+    @include media(med) {
+      display: flex;
+    }
+    &__el {
+      ul {
+        li {
+          list-style: none;
+          color: $light_grey;
+          padding-bottom: 10px;
+          outline: none;
+        }
+        .main-menu-el{
+          cursor: pointer;
+        }
+        .title {
+          color: $white;
+          margin-top: 10px;
+        }
+        .footer-active {
+          color: $red;
+        }
+      }
+    }
+    .main-menu {
+      @include media(med) {
+        width: 30%;
+      }
+    }
+    .about-us {
+      @include media(med) {
+        width: 70%;
+      }
+    }
+  }
+}
