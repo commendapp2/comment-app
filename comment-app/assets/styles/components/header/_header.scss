@@ -1,0 +1,19 @@
+.comments-nav-container {
+  background-color: $dark_grey;
+  box-shadow: 0 3px 5px 0 $red;
+  margin-bottom: 40px;
+  &__content {
+    display: flex;
+    &__el {
+      list-style: none;
+      padding: 15px;
+      outline: none;
+      cursor: pointer;
+      color: $white;
+      font-weight: bold;
+    }
+    .header-active {
+      background-color: $red;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+@mixin btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  user-select: none;
+  background-color: $red;
+  color: $white;
+  border-radius: 3px;
+  padding: 10px;
+  @include hover {
+    background-color: darken($red, 10%);
+  }
+  &:disabled {
+    background-color: $light_grey;
+    color: $dark_grey;
+    cursor: not-allowed;
+  }
+}
+
+@mixin scrollbar ($scrollbar) {
+  // -webkit-
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $red;
+    @include hover {
+      background-color: darken($red, 10%);
+    }
+  }
+  @if $scrollbar==normal {
+    &::-webkit-scrollbar:vertical {
+      width: 8px;
+    }
+    &::-webkit-scrollbar:horizontal {
+      height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 8px;
+      background-color: transparent;
+    }
+  }
+  @else if $scrollbar==body {
+    &::-webkit-scrollbar:vertical {
+      width: 10px;
+    }
+    &::-webkit-scrollbar:horizontal {
+      height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 0;
+      background-color: $dark_grey;
+    }
+  }
+  // -moz-
+  scrollbar-color: $light_grey transparent;
+  scrollbar-width: thin;
+}
